@@ -1,14 +1,16 @@
 There are some programe I've writter for frieds! Feel free to use and add to the list.
 
-== horse_move_demo
+تصمیم گرفتم بعضی مشق ها که برای بقیه نوشته ام رو اینجا بذارم تا شاید افراد بیشتری ازش استفاده کنن. وقتی کسی نمی خواد مشقی رو بنویسه ، زور که نمی شه کردش (:
+
+## horse_move_demo
 
 > write a program to show how a horse moves using terminal graphics
 
 برنامه شاید عجیب باشه ولی خب به هرحال یک مشق واقعی بوده: نمایش حرکت اسب شطرنج در محیط متنی!
 
-== python_socket_programming
+## python_socket_programming
 
-=== درس مهندسی اینترنت
+### درس مهندسی اینترنت
 
 > با استفاده از سوکت ها در پایتون، یک برنامه بنویسید - کلاینت سرور ماشین حساب
 
