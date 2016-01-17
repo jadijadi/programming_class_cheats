@@ -14,6 +14,6 @@ There are some programe I've writter for frieds! Feel free to use and add to the
 
 اسکرین شات درون دایرکتوری نشون دهنده اجرای برنامه است.
 
-![python socket programming screenshot](/relative/path/to/img.jpg?raw=true "Optional Title")
+![python socket programming screenshot](/jadijadi/programming_class_cheats/blob/master/python_socket_programming/python_socket_programming.png?raw=true)
 
 

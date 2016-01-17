@@ -1,3 +1,6 @@
+# by Jadi under MIT license. 
+# Published at https://github.com/jadijadi/programming_class_cheats
+
 import socket
 import sys
 
