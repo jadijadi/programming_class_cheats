@@ -26,5 +26,5 @@ There are some programe I've writter for frieds! Feel free to use and add to the
 
 درس برنامه نویسی پیشرفته ! شبیه شوخیه :)
 
-
-
+## Flappy Bird Reinforcement Learning in Matlab
+> روبات یادگیرنده بازی معروف Flappy Bird در متلب به روش یادگیری تقویتی(Reinforcement Learning)
