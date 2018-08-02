@@ -28,3 +28,13 @@ There are some programe I've writter for frieds! Feel free to use and add to the
 
 ## Flappy Bird Reinforcement Learning in Matlab
 > روبات یادگیرنده بازی معروف Flappy Bird در متلب به روش یادگیری تقویتی(Reinforcement Learning)
+
+## پروژه ی تحلیل گر لغوی - اصول طراحی کامپایلر
+
+> توی این برنامه قراره یک تحلیل گر لغوی به زبان سی پلاس پلاس طراحی کنیم
+
+اینم یه پروژه از درس اصول طراحی کامپایلر :)
+
+توی این برنامه میخواییم یه تحلیل گر لغوی طراحی کنیم که بتونه یک فایل رو بخونه و انواع مختلف نوشته شده توی فایل رو براساس جدول زیر تشخیص بده و جدا کنه
+
+![image](https://github.com/ehsan-mohammadi/programming_class_cheats/blob/master/Lexical_Analyzer/Image.png)
