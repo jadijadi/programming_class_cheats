@@ -28,3 +28,6 @@ There are some programe I've writter for frieds! Feel free to use and add to the
 
 ## Flappy Bird Reinforcement Learning in Matlab
 > روبات یادگیرنده بازی معروف Flappy Bird در متلب به روش یادگیری تقویتی(Reinforcement Learning)
+## [FCFS Scheduling algorithm](https://en.wikipedia.org/wiki/Scheduling_(computing)#First_come,_first_served)
+> The code simulates FCFS process time Scheduling algorithm.
+ 
