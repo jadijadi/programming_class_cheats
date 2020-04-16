@@ -28,3 +28,6 @@ There are some programe I've writter for frieds! Feel free to use and add to the
 
 ## Flappy Bird Reinforcement Learning in Matlab
 > روبات یادگیرنده بازی معروف Flappy Bird در متلب به روش یادگیری تقویتی(Reinforcement Learning)
+
+## game of life
+بازنویسی بازی زندگی کانوی با سی. 
