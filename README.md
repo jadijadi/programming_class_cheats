@@ -20,4 +20,14 @@ There are some programe I've writter for frieds! Feel free to use and add to the
 
 ![python socket programming screenshot](https://raw.githubusercontent.com/jadijadi/programming_class_cheats/master/python_socket_programming/python_socket_programming.png?raw=true)
 
+## کلاس ماتریس بدون استفاده از آرایه دو بعدی پویا
 
+> کلاسی برای ماتریس تعریف کنید سپس عملگرهای ==,*,+,!=,>>,<< را برای این کلاس سربارگذاری کنید.
+
+درس برنامه نویسی پیشرفته ! شبیه شوخیه :)
+
+## Flappy Bird Reinforcement Learning in Matlab
+> روبات یادگیرنده بازی معروف Flappy Bird در متلب به روش یادگیری تقویتی(Reinforcement Learning)
+
+## game of life
+بازنویسی بازی زندگی کانوی با سی. 
