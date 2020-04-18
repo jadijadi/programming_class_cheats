@@ -14,24 +14,21 @@ char puzzle[9][9] = {
 
 void draw()
 {
-	for (int tmp=0; tmp<11*2; tmp++)
-		printf("-");
-	printf("\n");
+	printf(" ----------------------- \n");
+
 	for (int i=0; i<9; i++) {
-		printf("| ");
 		for (int j=0; j<9; j++) {
-			if (j==3 || j==6)
-				printf ("|");
+			if (j % 3 == 0)
+				printf("| ");
+
 			printf("%d ", puzzle[i][j]);
 		}
-		if (i==2 || i==5)
-			printf ("\n-----------------------\n");
+
+		if ((i+1) % 3 == 0)
+			printf("| \n ----------------------- \n");
 		else
-			printf("|\n");
+			printf("| \n");
 	}
-	for (int tmp=0; tmp<11*2; tmp++)
-		printf("-");
-	printf("\n");
 }
 
 char find_free(int *x, int *y)
