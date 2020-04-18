@@ -17,12 +17,12 @@ char guess[9][9];
 
 void draw()
 {
-	printf(" ----------------------- \n");
+	printf("┌───────┬───────┬───────┐\n");
 
 	for (int i=0; i<9; i++) {
 		for (int j=0; j<9; j++) {
 			if (j % 3 == 0)
-				printf("| ");
+				printf("│ ");
 
 			// set output color to print guessed cells in different color
 			if (guess[i][j])
@@ -34,10 +34,12 @@ void draw()
 			printf("\033[0m");
 		}
 
-		if ((i+1) % 3 == 0)
-			printf("| \n ----------------------- \n");
-		else
-			printf("| \n");
+		printf("│\n");
+
+		if (i == 8)
+			printf("└───────┴───────┴───────┘\n");
+		else if ((i+1) % 3 == 0)
+			printf("├───────┼───────┼───────┤\n");
 	}
 }
 
