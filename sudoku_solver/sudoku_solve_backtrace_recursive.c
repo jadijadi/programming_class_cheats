@@ -12,6 +12,9 @@ char puzzle[9][9] = {
 	{0, 0, 0, 0, 8, 0, 0, 7, 9}
 };
 
+// keep guessed cells to know after solving the puzzle
+char guess[9][9];
+
 void draw()
 {
 	printf(" ----------------------- \n");
@@ -21,7 +24,14 @@ void draw()
 			if (j % 3 == 0)
 				printf("| ");
 
+			// set output color to print guessed cells in different color
+			if (guess[i][j])
+				printf("\033[32m");
+			
 			printf("%d ", puzzle[i][j]);
+
+			// reset the output color
+			printf("\033[0m");
 		}
 
 		if ((i+1) % 3 == 0)
@@ -38,6 +48,7 @@ char find_free(int *x, int *y)
 			if (puzzle[i][j]==0) {
 				*x = i;
 				*y = j;
+				guess[i][j] = 1;
 				return 1;
 			}
 	return 0;
