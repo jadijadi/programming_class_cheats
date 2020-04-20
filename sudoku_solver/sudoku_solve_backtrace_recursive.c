@@ -1,6 +1,10 @@
 #include <stdio.h>
+#include <string.h>
+
+#include "boxing.h"
 
 char puzzle[9][9] = {
+    
 	{5, 3, 0, 0, 7, 0, 0, 0, 0},
 	{6, 0, 0, 1, 9, 5, 0, 0, 0},
 	{0, 9, 8, 0, 0, 0, 0, 6, 0},
@@ -17,28 +21,52 @@ char guess[9][9];
 
 void draw()
 {
-	printf(" ----------------------- \n");
-
-	for (int i=0; i<9; i++) {
-		for (int j=0; j<9; j++) {
-			if (j % 3 == 0)
-				printf("| ");
-
-			// set output color to print guessed cells in different color
-			if (guess[i][j])
-				printf("\033[32m");
-			
-			printf("%d ", puzzle[i][j]);
-
-			// reset the output color
-			printf("\033[0m");
-		}
-
-		if ((i+1) % 3 == 0)
-			printf("| \n ----------------------- \n");
-		else
-			printf("| \n");
-	}
+    int ch;
+    int i = 0;
+    int j = 0;
+    
+    // window handler
+    WINDOW *local_win;
+    // creating a window in center of the screen
+    local_win = newwin(19, 37, (LINES - 19) / 2, (COLS - 37)/2);
+    
+    // creating a color with number #2
+    init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    
+    // for BOLD charactors
+    wattron(local_win, A_BOLD);   
+    
+    // creating upper part of the table
+    box_up(local_win);
+    
+ 	for (i=0; i<9; i++) {
+ 		for (j=0; j<9; j++) {
+            waddch(local_win, ACS_VLINE);
+            if (guess[i][j])    // solved charactor will be colorfull
+                wattron(local_win, COLOR_PAIR(2));
+            
+            wprintw(local_win, " %d ", puzzle[i][j]);
+            wattroff(local_win, COLOR_PAIR(2));
+ 		}
+ 		waddch(local_win, ACS_VLINE);
+        if (i < 8)
+            box_line(local_win);
+ 	}
+ 	
+	// creating lower part of the table
+	box_down(local_win);
+    
+	// refreshing screen
+    refresh();
+    
+    // refreshing local_win
+	wrefresh(local_win);
+    
+    // waiting for F1 to exit
+	while((ch = getch()) != KEY_F(1)){}
+	
+	// destoying memory of local_win
+	delwin(local_win);
 }
 
 char find_free(int *x, int *y)
@@ -72,9 +100,9 @@ char is_valid(int n, int x, int y)
 int solve()
 {
 	int x, y;
+
 	if (find_free(&x, &y) == 0)
 		return 1;
-
 
 	for (int i=1; i<=9; i++)
 		if (is_valid(i, x, y)) {
@@ -88,9 +116,40 @@ int solve()
 
 int main ()
 {
+    char prompt[] = "Press F1 to exit\n";
+    char err[] = "I can not solve it! wow....\n";
+    
+    // initiation of curse mode
+    initscr();
+    
+    // disabling buffer for input (do not need to press enter)
+    raw();
+    
+    // getch() wont show charactor
+    noecho();
+    
+    // enabling F(1-12) keys
+    keypad(stdscr, TRUE);
+    
+    // hiding cursur
+    curs_set(0);
+    
+    // enabling color mode
+    start_color();
+    
+    // creating a color with number #1
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    attron(COLOR_PAIR(1));
+    mvprintw(2, (COLS - strlen(prompt)) / 2, "%s", prompt);
+    attroff(COLOR_PAIR(1));
+    
 	if (solve())
 		draw();
 	else
-		printf("I can not solve it! wow....\n");
+		mvprintw(2, (COLS - strlen(err)) / 2, "%s", err);
+
+    // exit from curse mode
+    endwin();
+    
 	return 0;
 }
