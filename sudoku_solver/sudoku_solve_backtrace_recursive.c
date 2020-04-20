@@ -33,24 +33,29 @@ void draw()
     // creating a color with number #2
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     
-    // for BOLD charactors
-    wattron(local_win, A_BOLD);   
-    
+    init_pair(3, COLOR_BLUE, COLOR_BLACK);
     // creating upper part of the table
     box_up(local_win);
     
  	for (i=0; i<9; i++) {
  		for (j=0; j<9; j++) {
+            if (j % 3 == 0)
+                wattron(local_win, COLOR_PAIR(3) | A_BOLD);
             waddch(local_win, ACS_VLINE);
+            wattroff(local_win, COLOR_PAIR(3) | A_BOLD);
             if (guess[i][j])    // solved charactor will be colorfull
                 wattron(local_win, COLOR_PAIR(2));
             
             wprintw(local_win, " %d ", puzzle[i][j]);
             wattroff(local_win, COLOR_PAIR(2));
- 		}
- 		waddch(local_win, ACS_VLINE);
-        if (i < 8)
+        }
+ 		waddch(local_win, COLOR_PAIR(3) | ACS_VLINE | A_BOLD);
+        if (i < 8){
+            if ((i + 1) % 3 == 0)
+                wattron(local_win, COLOR_PAIR(3) | A_BOLD);
             box_line(local_win);
+            wattroff(local_win, COLOR_PAIR(3) | A_BOLD);
+        }
  	}
  	
 	// creating lower part of the table
