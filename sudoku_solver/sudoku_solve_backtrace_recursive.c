@@ -139,14 +139,18 @@ int main ()
     
     // creating a color with number #1
     init_pair(1, COLOR_RED, COLOR_BLACK);
+    
+    // adding color #1 attribute to stdscr
     attron(COLOR_PAIR(1));
     mvprintw(2, (COLS - strlen(prompt)) / 2, "%s", prompt);
-    attroff(COLOR_PAIR(1));
     
 	if (solve())
 		draw();
 	else
 		mvprintw(2, (COLS - strlen(err)) / 2, "%s", err);
+    
+    // color #1 disable for stdscr at the end.
+    attroff(COLOR_PAIR(1));
 
     // exit from curse mode
     endwin();
