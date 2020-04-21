@@ -48,7 +48,7 @@ int main ()
     // enabling color mode
     start_color();
     
-    // creating colors #1-4
+    // creating colors #1-5
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     init_pair(3, COLOR_BLUE, COLOR_BLACK);
