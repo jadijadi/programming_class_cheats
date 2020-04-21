@@ -48,10 +48,12 @@ int main ()
     // enabling color mode
     start_color();
     
-    // creating colors #1-3
+    // creating colors #1-4
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     init_pair(3, COLOR_BLUE, COLOR_BLACK);
+    init_pair(4, COLOR_BLACK, COLOR_WHITE);
+    init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
 
     // adding color #1 attribute to stdscr
     attron(COLOR_PAIR(1));
@@ -84,11 +86,15 @@ void draw(WINDOW *win)
     
  	for (i=0, ky=1; i<9; i++, ky+=2) {
  		for (j=0, kx=2; j<9; j++, kx+=4) {
-            if (guess[i][j])    // solved charactor will be colorfull
+            if (guess[i][j]){    // solved charactor will be colorfull
                 wattron(win, COLOR_PAIR(2));
-            
-            mvwprintw(win, ky, kx, "%d", puzzle[i][j]);
-            wattroff(win, COLOR_PAIR(2));
+                mvwprintw(win, ky, kx, "%d", puzzle[i][j]);
+            }
+            else{
+                wattron(win, COLOR_PAIR(5) | A_BOLD);
+                mvwprintw(win, ky, kx, "%d", puzzle[i][j]);
+            }
+            wattroff(win, COLOR_PAIR(2) | COLOR_PAIR(5) | A_BOLD);
         }
  	}
     
