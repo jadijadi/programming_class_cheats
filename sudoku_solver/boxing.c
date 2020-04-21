@@ -100,6 +100,10 @@ WINDOW *get_input(WINDOW* win, char puzzle[][9]){
     int x = 2;
     int iindx = 0;
     int jindx = 0;
+    
+    int or = y;
+    int oc = x;
+    
     char prompt1[] = "Enter the sudoku and press (F2) to solve\n";
     char prompt2[] = "default value is 0\n";
     WINDOW *tmp;
@@ -107,8 +111,12 @@ WINDOW *get_input(WINDOW* win, char puzzle[][9]){
     wprintw(tmp, "%s", prompt1);
     wprintw(tmp, "%s", prompt2);
     wrefresh(tmp);
-    
+
+    mvwchgat(win, y, x, 1, A_BLINK, 4, NULL);
+    wrefresh(win);
     while ((input = getch()) != KEY_F(2)){
+        or = y;
+        oc = x;
         switch(input){
             case KEY_UP:
                 ((y-=2) == -1) ? y = 17 : y;
@@ -143,6 +151,8 @@ WINDOW *get_input(WINDOW* win, char puzzle[][9]){
             default:
                 break;
         }
+        mvwchgat(win, or, oc, 1, A_NORMAL, 5, NULL);
+        mvwchgat(win, y, x, 1, A_BLINK, 4, NULL);
         wrefresh(win);
     }
     
