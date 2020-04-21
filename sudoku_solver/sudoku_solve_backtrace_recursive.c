@@ -59,11 +59,11 @@ int main ()
     attron(COLOR_PAIR(1));
     mvprintw(0, (COLS - strlen(prompt)) / 2, "%s", prompt);
     
-    win = draw_empty_table();
-    win = get_input(win, puzzle);
+    win = draw_empty_table();      // draws an empty table
+    win = get_input(win, puzzle);  // user can input numbers in the table
     
 	if (solve())
-		draw(win);
+		draw(win);  // draws the solved table
 	else
 		mvprintw(3, (COLS - strlen(err)) / 2, "%s", err);
     
