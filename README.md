@@ -2,6 +2,13 @@ There are some programe I've writter for frieds! Feel free to use and add to the
 
 تصمیم گرفتم بعضی مشق ها که برای بقیه نوشته ام رو اینجا بذارم تا شاید افراد بیشتری ازش استفاده کنن. وقتی کسی نمی خواد مشقی رو بنویسه ، زور که نمی شه کردش (:
 
+
+## gif_hider
+
+این برنامه با استفاده از XOR فایل ها رو رمزنگاری می کنه تا قابل تشخیص نباشن. اجرای مجددش باعث می شه فایل دوباره قابل استفاده بشه. برای اطلاعات بیشتر [پست مرتبط در وبلاگم رو ببینین](https://jadi.net/2020/04/c-gif-coder/) - با آنتی فیلتر.
+
+
+
 ## horse_move_demo
 
 > write a program to show how a horse moves using terminal graphics
@@ -30,4 +37,4 @@ There are some programe I've writter for frieds! Feel free to use and add to the
 > روبات یادگیرنده بازی معروف Flappy Bird در متلب به روش یادگیری تقویتی(Reinforcement Learning)
 
 ## game of life
-بازنویسی بازی زندگی کانوی با سی. 
+بازنویسی بازی زندگی کانوی با سی. برای اطلاعات بیشتر [لینک وبلاگم رو ببینین](https://jadi.net/2020/04/game-of-life-in-c/) با آنتی فیلتر (:
