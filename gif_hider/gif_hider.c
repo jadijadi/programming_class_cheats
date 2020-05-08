@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <getopt.h>
+#include <unistd.h>
 
 #define error_handler(msg)		\
 	do { perror(msg); exit(EXIT_FAILURE); } while(0)
@@ -13,10 +14,10 @@ void encrypt(const char *, const char *, long int);
 
 int main (int argc, char *argv[])
 {
-	program_name = argv[0];
 
 	int next_option;
 	long int code = 1;
+
 	const char *short_options = "hi:o:x:";
 
 	const struct option long_options[] = {
@@ -29,8 +30,11 @@ int main (int argc, char *argv[])
 
 	char *input_file = NULL;
 	char *output_file = NULL;
+	
+	program_name = argv[0];
 
 	do {
+		/* checking given arguments */
 		next_option = getopt_long(argc, argv,
 				short_options, long_options, NULL);
 		switch(next_option){
@@ -86,12 +90,18 @@ void print_usage(FILE *stream, int exit_code)
 void encrypt(const char *input_file, const char *output_file, long int code)
 {
 
+	/* XXXXXX will be replace with random things by mkstemp */
+	char tmp_path[] = ".gif_hider.XXXXXX"; // unique filename avoids overwriting
 	FILE *fptro;
 	FILE *fptrt;
+	int tmpfd;
 	char data;
 
 	fptro = fopen(input_file, "rb");
-	fptrt = fopen(".tmp.gif", "wb");
+
+	/* creates and open a file a with unique filename */
+	tmpfd = mkstemp(tmp_path);	// returns a file descriptor
+	fptrt = fdopen(tmpfd, "wb");	// returns FILE * by given file descriptor
 
 	if (!fptro || !fptrt){
 		fprintf(stderr, "Error to opening files\n");
@@ -108,6 +118,6 @@ void encrypt(const char *input_file, const char *output_file, long int code)
 	fclose(fptrt);
 	
 	remove(input_file);
-	rename(".tmp.gif", output_file);
+	rename(tmp_path, output_file);
 
 }
