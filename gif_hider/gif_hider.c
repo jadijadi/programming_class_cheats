@@ -3,6 +3,9 @@
 #include <string.h>
 #include <getopt.h>
 
+#define error_handler(msg)		\
+	do { perror(msg); exit(EXIT_FAILURE); } while(0)
+
 char *program_name;
 
 void print_usage(FILE*, int);
@@ -36,17 +39,14 @@ int main (int argc, char *argv[])
 				break;
 			case 'i':
 				input_file = (char *)malloc(strlen(optarg));
-				if (input_file == NULL){
-					perror("memory");
-					exit(EXIT_FAILURE);
-				}
+				if (input_file == NULL)
+					error_handler("input filename");
 				memmove(input_file, optarg, strlen(optarg));
 				break;
 			case 'o':
 				output_file = (char *)malloc(strlen(optarg));
 				if (output_file == NULL){
-					perror("memory");
-					exit(EXIT_FAILURE);
+					error_handler("output filename");
 				}
 				memmove(output_file, optarg, strlen(optarg));
 				break;
