@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <getopt.h>
 
 char *program_name;
@@ -23,8 +24,8 @@ int main (int argc, char *argv[])
 		{ NULL,        0,		NULL, 0 }
 	};
 
-	const char *input_file = NULL;
-	const char *output_file = NULL;
+	char *input_file = NULL;
+	char *output_file = NULL;
 
 	do {
 		next_option = getopt_long(argc, argv,
@@ -34,10 +35,20 @@ int main (int argc, char *argv[])
 				print_usage(stdout, 0);
 				break;
 			case 'i':
-				input_file = optarg;
+				input_file = (char *)malloc(strlen(optarg));
+				if (input_file == NULL){
+					perror("memory");
+					exit(EXIT_FAILURE);
+				}
+				memmove(input_file, optarg, strlen(optarg));
 				break;
 			case 'o':
-				output_file = optarg;
+				output_file = (char *)malloc(strlen(optarg));
+				if (output_file == NULL){
+					perror("memory");
+					exit(EXIT_FAILURE);
+				}
+				memmove(output_file, optarg, strlen(optarg));
 				break;
 			case 'x':
 				code = (int)strtol(optarg, NULL, 16);
@@ -50,9 +61,11 @@ int main (int argc, char *argv[])
 
 	if (input_file && output_file){
 		encrypt(input_file, output_file, code);
+		printf("done whit key: %p\n", code);
 	}
 	
-	printf("done whit key: %p\n", code);
+	free(input_file);
+	free(output_file);
 
 	return 0;
 }
