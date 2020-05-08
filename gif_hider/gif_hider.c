@@ -1,28 +1,31 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#define MAX_FILE_SIZE (1024*1024)
 int main ()
 {
-	FILE *fptr;
-	char data[MAX_FILE_SIZE];
+	FILE *fptro;
+	FILE *fptrt;
+	char data;
 
-	fptr = fopen("phpconf.gif", "rb");
+	fptro = fopen("phpconf.gif", "rb");
+	fptrt = fopen(".phpconf.gif", "wb");
+
+	if (!fptro || !fptrt){
+		fprintf(stderr, "Error to opening files\n");
+		exit(EXIT_FAILURE);
+	}
 
 	int i = 0;
-	while (!feof(fptr))
-		data[i++] = fgetc(fptr);
-	fclose(fptr);
+	while (!feof(fptro)){
+		data = fgetc(fptro);
+		fputc((data ^ 0x60), fptrt);
+	}
 
-	fptr = fopen("phpconf.gif", "wb");
-
-	for (int j=0; j<i-1; j++)
-		fputc((data[j] ^ 0x60), fptr);
-	fclose(fptr);
+	fclose(fptro);
+	fclose(fptrt);
+	
+	remove("phpconf.gif");
+	rename(".phpconf.gif", "phpconf.gif");
 
 	return 0;
 }
-
-
-
-
-
