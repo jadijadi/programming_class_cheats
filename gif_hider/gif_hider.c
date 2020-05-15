@@ -10,13 +10,13 @@
 char *program_name;
 
 void print_usage(FILE*, int);
-void encrypt(const char *, const char *, long int);
+void encrypt(const char *, const char *, int);
 
 int main (int argc, char *argv[])
 {
 
 	int next_option;
-	long int code = 1;
+	int code = 1;
 
 	const char *short_options = "hi:o:x:";
 
@@ -87,7 +87,7 @@ void print_usage(FILE *stream, int exit_code)
 	exit(exit_code);
 }
 
-void encrypt(const char *input_file, const char *output_file, long int code)
+void encrypt(const char *input_file, const char *output_file, int code)
 {
 
 	/* XXXXXX will be replace with random things by mkstemp */
