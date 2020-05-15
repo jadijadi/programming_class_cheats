@@ -31,7 +31,8 @@ int main (int argc, char *argv[])
 	char *input_file = NULL;
 	char *output_file = NULL;
 	
-	program_name = argv[0];
+	program_name = (char *)malloc(strlen(argv[0]));
+	strncpy(program_name, argv[0], strlen(argv[0]));
 
 	do {
 		/* checking given arguments */
