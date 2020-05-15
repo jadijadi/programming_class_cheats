@@ -50,9 +50,8 @@ int main (int argc, char *argv[])
 				break;
 			case 'o':
 				output_file = (char *)malloc(strlen(optarg));
-				if (output_file == NULL){
+				if (output_file == NULL)
 					error_handler("output filename");
-				}
 				memmove(output_file, optarg, strlen(optarg));
 				break;
 			case 'x':
