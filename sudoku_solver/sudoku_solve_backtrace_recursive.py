@@ -1,13 +1,13 @@
 puzzle = [
-    [5, 3, 0, 0, 7, 0, 0, 0, 0],
-    [6, 0, 0, 0, 9, 5, 0, 0, 0],
-    [0, 9, 8, 0, 0, 0, 0, 6, 0],
-    [8, 0, 0, 0, 6, 0, 0, 0, 3],
-    [4, 0, 0, 8, 0, 3, 0, 0, 1],
-    [7, 0, 0, 0, 2, 0, 0, 0, 6],
-    [0, 6, 0, 0, 0, 0, 2, 8, 0],
-    [0, 0, 0, 4, 1, 9, 0, 0, 5],
-    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
 ]
 guess = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -20,14 +20,29 @@ guess = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
+def check_a(a,col,row):
+    while len(a)>1 or a.isdigit() == False :
+        print("oh your number is unaccepetable.pleas try again from first:)")
+        for col in range(col,col+1):
+            a=input("[row"+str(row+1)+"]"+"[col"+str(col+1)+"]:")
+    else:
+        return a
 
+def get_puzzle():
+    for row in range(9):
+        for col in range(9):
+            a=input("[row"+str(row+1)+"]"+"[col"+str(col+1)+"]:")
+            b=check_a(a,col,row)
+            b=int(b)
+            r = puzzle[row]
+            r.insert(col,b)
 
 def draw():
     for j in puzzle:
         for i in j:
             print(i, end=" ")
         print("\n")
-
+  
 
 def find_free():
     for i in range(9):
@@ -65,7 +80,7 @@ def solve():
                 return True
             puzzle[x][y] = 0
     return False
-
+get_puzzle()
 
 if (solve()):
     draw()
