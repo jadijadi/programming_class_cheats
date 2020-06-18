@@ -22,7 +22,7 @@ guess = [
 ]
 def check_a(a,col,row):
     while len(a)>1 or a.isdigit() == False :
-        print("oh your number is unaccepetable.pleas try again from first:)")
+        print("oh your number is unaccepetable.pleas enter a good number:)")
         for col in range(col,col+1):
             a=input("[row"+str(row+1)+"]"+"[col"+str(col+1)+"]:")
     else:
