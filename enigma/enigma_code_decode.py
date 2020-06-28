@@ -24,9 +24,9 @@ def enigma_one_char(c):
 def rotate_rotors():
     global r1, r2, r3
     r1 = r1[1:] + r1[0]
-    if state % 26:
+    if state % 26 == 0:
         r2 = r2[1:] + r2[0]
-    if state % (26*26):
+    if state % (26*26) == 0:
         r3 = r3[1:] + r3[0]
 
 
@@ -39,4 +39,4 @@ for c in plain:
     cipher += enigma_one_char(c)
     rotate_rotors()
 
-print (cipher)
+print(cipher)
