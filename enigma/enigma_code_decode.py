@@ -1,4 +1,5 @@
 import pickle
+import sys
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
@@ -29,16 +30,19 @@ def rotate_rotors():
     if state % (26*26) == 0:
         r3 = r3[1:] + r3[0]
 
+if not len(sys.argv) == 2:
+    print("Please enter your message as an argument.")
 
-plain = 'lnme'
-cipher = ''
-state = 0
+else:
+    plain = sys.argv[1]
+    cipher = ''
+    state = 0
 
-for c in plain:
-    if c==' ':
-        continue
-    state += 1
-    cipher += enigma_one_char(c)
-    rotate_rotors()
+    for c in plain:
+        if c==' ':
+            continue
+        state += 1
+        cipher += enigma_one_char(c)
+        rotate_rotors()
 
-print(cipher)
+    print(cipher)
