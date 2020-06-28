@@ -8,7 +8,7 @@ int main ()
 
 	fptr = fopen("phpconf.gif", "rb");
 
-	int i = 0;
+	int i = 0;     
 	while (!feof(fptr))
 		data[i++] = fgetc(fptr);
 	fclose(fptr);
