@@ -1,4 +1,5 @@
 # Enigma Simulartor
+
 First run the `todays_rotor_generator.py` and it will produce a rotor configuration saved in `todays_rotor_state.enigma` file.
 
-Then open the `enigma_code_decode` program and change the *plaintext* and run the program. 
+Then run `python enigma_code_decode.py text` in the command line to code or decode the text.
