@@ -1,7 +1,7 @@
 import pickle
 import sys
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz'
+alphabet = 'abcdefghijklmnopqrstuvwxyz '
 
 f = open('./todays_rotor_state.enigma', 'rb')
 r1, r2, r3 = pickle.load(f)
@@ -31,7 +31,7 @@ def rotate_rotors():
         r3 = r3[1:] + r3[0]
 
 if not len(sys.argv) == 2:
-    print("Please enter your message as an argument.")
+    print("Please enter your message.")
 
 else:
     plain = sys.argv[1]
@@ -39,8 +39,6 @@ else:
     state = 0
 
     for c in plain:
-        if c==' ':
-            continue
         state += 1
         cipher += enigma_one_char(c)
         rotate_rotors()
