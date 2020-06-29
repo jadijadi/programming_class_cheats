@@ -1,7 +1,7 @@
 import pickle
 import sys
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz'
+alphabet = 'abcdefghijklmnopqrstuvwxyz '
 
 f = open('./todays_rotor_state.enigma', 'rb')
 r1, r2, r3 = pickle.load(f)
@@ -39,8 +39,6 @@ else:
     state = 0
 
     for c in plain:
-        if c==' ':
-            continue
         state += 1
         cipher += enigma_one_char(c)
         rotate_rotors()

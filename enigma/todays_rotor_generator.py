@@ -1,7 +1,7 @@
 import random
 import pickle
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz'
+alphabet = 'abcdefghijklmnopqrstuvwxyz '
 
 r1 = list(alphabet)
 random.shuffle(r1)
