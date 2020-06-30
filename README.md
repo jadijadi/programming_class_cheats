@@ -1,4 +1,4 @@
-There are some programe I've writter for frieds! Feel free to use and add to the list.
+There are some programs I've written for friends! Feel free to use and add to the list.
 
 تصمیم گرفتم بعضی مشق ها که برای بقیه نوشته ام رو اینجا بذارم تا شاید افراد بیشتری ازش استفاده کنن. وقتی کسی نمی خواد مشقی رو بنویسه ، زور که نمی شه کردش (:
 
