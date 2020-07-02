@@ -1,21 +1,31 @@
-import random
 import pickle
+import random
+import string
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz '
-
-r1 = list(alphabet)
-random.shuffle(r1)
-r1 = ''.join(r1)
+ALPHABET = string.ascii_lowercase + " "
 
 
-r2 = list(alphabet)
-random.shuffle(r2)
-r2 = ''.join(r2)
+def generate_rotors(chars=ALPHABET):
+    rotor1 = list(chars)
+    random.shuffle(list(chars))
+    rotor1 = "".join(rotor1)
 
-r3 = list(alphabet)
-random.shuffle(r3)
-r3 = ''.join(r3)
+    rotor2 = list(chars)
+    random.shuffle(rotor2)
+    rotor2 = "".join(rotor2)
 
-f = open('./todays_rotor_state.enigma', 'wb')
-pickle.dump((r1, r2, r3), f)
-f.close()
+    rotor3 = list(chars)
+    random.shuffle(rotor3)
+    rotor3 = "".join(rotor3)
+
+    return (rotor1, rotor2, rotor3)
+
+
+def save_rotors_state(filename, rotor1, rotor2, rotor3):
+    with open(filename, mode="wb") as binary_file:
+        pickle.dump((rotor1, rotor2, rotor3), binary_file)
+
+
+if __name__ == "__main__":
+    rotor1, rotor2, rotor3 = generate_rotors()
+    save_rotors_state("./todays_rotor_state.enigma", rotor1, rotor2, rotor3)
