@@ -1,21 +1,24 @@
+'''
+Creates rotors
+'''
 import random
 import pickle
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz '
+ALPHABET = 'abcdefghijklmnopqrstuvwxyz '
 
-r1 = list(alphabet)
-random.shuffle(r1)
-r1 = ''.join(r1)
+ROTOR_1 = list(ALPHABET)
+random.shuffle(ROTOR_1)
+ROTOR_1 = ''.join(ROTOR_1)
 
 
-r2 = list(alphabet)
-random.shuffle(r2)
-r2 = ''.join(r2)
+ROTOR_2 = list(ALPHABET)
+random.shuffle(ROTOR_2)
+ROTOR_2 = ''.join(ROTOR_2)
 
-r3 = list(alphabet)
-random.shuffle(r3)
-r3 = ''.join(r3)
+ROTOR_3 = list(ALPHABET)
+random.shuffle(ROTOR_3)
+ROTOR_3 = ''.join(ROTOR_3)
 
-f = open('./todays_rotor_state.enigma', 'wb')
-pickle.dump((r1, r2, r3), f)
-f.close()
+FILE_ROTOR = open('./todays_rotor_state.enigma', 'wb')
+pickle.dump((ROTOR_1, ROTOR_2, ROTOR_3), FILE_ROTOR)
+FILE_ROTOR.close()
