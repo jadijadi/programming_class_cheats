@@ -4,9 +4,12 @@ Code and decode enigma cipher
 
 import pickle
 import sys
+import click
 
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz '
 PLUGBOARD = {'a':'a', 'b':'b'}
+CIPHER = ''
+STATE = 0
 
 FILE_ROTOR = open('./todays_rotor_state.enigma', 'rb')
 ROTOR_1, ROTOR_2, ROTOR_3 = pickle.load(FILE_ROTOR)
@@ -38,13 +41,13 @@ def rotate_rotors():
     if STATE % (26*26) == 0:
         ROTOR_3 = ROTOR_3[1:] + ROTOR_3[0]
 
-if len(sys.argv) != 2:
-    print("Please enter your message.")
 
-else:
-    PLAIN = sys.argv[1]
-    CIPHER = ''
-    STATE = 0
+
+@click.command()
+@click.option('-m', '--message', required=True, nargs=1, prompt=True, hide_input=True, help="Get message and Code/Decode it.")
+def cli(message):
+    PLAIN = message
+    global CIPHER, STATE
 
     for c in PLAIN:
         if c in PLUGBOARD.keys():
@@ -53,4 +56,7 @@ else:
         CIPHER += enigma_one_char(c)
         rotate_rotors()
 
-    print(CIPHER)
+    click.secho(CIPHER, fg="green")
+
+if __name__ == "__main__":
+    cli()
