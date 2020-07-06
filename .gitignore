@@ -3,3 +3,6 @@
 \#*#
 *.out
 *.swp
+enigma/venv/
+enigma/__pycache__/
+enigma/*.egg-info/

@@ -3,7 +3,6 @@ Code and decode enigma cipher
 '''
 
 import pickle
-import sys
 import click
 
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz '
@@ -44,16 +43,17 @@ def rotate_rotors():
 
 
 @click.command()
-@click.option('-m', '--message', required=True, nargs=1, prompt=True, hide_input=True, help="Get message and Code/Decode it.")
+@click.option('-m', '--message', required=True,
+              nargs=1, prompt=True, hide_input=True)
 def cli(message):
-    PLAIN = message
+    ''' Get message and Code/Decode it '''
     global CIPHER, STATE
 
-    for c in PLAIN:
-        if c in PLUGBOARD.keys():
-            c = PLUGBOARD[c]
+    for character in message:
+        if character in PLUGBOARD.keys():
+            character = PLUGBOARD[character]
         STATE += 1
-        CIPHER += enigma_one_char(c)
+        CIPHER += enigma_one_char(character)
         rotate_rotors()
 
     click.secho(CIPHER, fg="green")

@@ -4,13 +4,23 @@ First run the `todays_rotor_generator.py` and it will produce a rotor configurat
 
 
 ### Run
-1. Run `enigma_code_decode.py` with `-m` or `--message` switch
+1. Run from python:
+	- Run `enigma.py` with `-m` or `--message` switch
+	```
+	python enigma.py -m 'message'
+	 ```
+	- Run `enigma.py` without switch and give your message inside the program
+	```
+	python enigma.py
+	```
+1. Run from setuptools:
+Init requirements by runnig:
 ```
-python enigma_code_decode.py -m 'message'
- ```
-1. Run `enigma_code_decode.py` without switch and give your message inside the program
+virtualenv venv
+source venv/bin/activate
+pip install --editable . # OR
+pip install -e .
 ```
-python enigma_code_decode.py
-```
+and then run `enigma` instead of `python enigma.py`
 
 
