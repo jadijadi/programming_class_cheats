@@ -25,7 +25,7 @@ There are some programs I've written for friends! Feel free to use and add to th
 
 اسکرین شات درون دایرکتوری نشون دهنده اجرای برنامه است.
 
-![python socket programming screenshot](https://raw.githubusercontent.com/jadijadi/programming_class_cheats/master/python_socket_programming/python_socket_programming.png?raw=true)
+[![asciicast](https://asciinema.org/a/8vvoJlTVUcmoMZj1Nnwns6o8q.png)](https://asciinema.org/a/8vvoJlTVUcmoMZj1Nnwns6o8q)
 
 ## کلاس ماتریس بدون استفاده از آرایه دو بعدی پویا
 
