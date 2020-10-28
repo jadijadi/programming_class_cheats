@@ -38,3 +38,5 @@ There are some programs I've written for friends! Feel free to use and add to th
 
 ## game of life
 بازنویسی بازی زندگی کانوی با سی. برای اطلاعات بیشتر [لینک وبلاگم رو ببینین](https://jadi.net/2020/04/game-of-life-in-c/) با آنتی فیلتر (:
+
+
