@@ -23,14 +23,20 @@ def main():
 
   #Saving keys in form of .txt file in case we need them!!
   f1 = open("r1(keys).txt", "a")
-  f1.write(R1)
+  f1.write(r1)
   f1.close()
 
   f2 = open("r2(keys).txt", "a")
-  f2.write(R2)
+  f2.write(r2)
   f2.close()
 
   f3 = open("r3(keys).txt", "a")
   f3.write(r3)
   f3.close()
+  #in case we need a .txt that contains all keys
+  r4="All keys are this!!\nKeep Them safe\n"+r1+"\n"+r2+"\n"+r3
+  f4 = open("r(All-keys).txt", "a")
+  f4.write(r4)
+  f4.close()
+  print("Keys Succesfully Generated")
 if __name__=="__main__":main()
