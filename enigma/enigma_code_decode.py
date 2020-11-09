@@ -1,14 +1,15 @@
+#libraries That we used
 import pickle
 import sys
 
 #َadding capital word and other thing that make programm more user-friendly
-alphabet="abcdefghijklmnopqrstuvwxyz;: ''?!$%^&*+-/().ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+alphabet="abcdefghijklmnopqrstuvwxyz;: ?!.ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 plugboard = {'a':'a','b':'b'}
 
 f = open('./todays_rotor_state.enigma', 'rb')
 r1, r2, r3 = pickle.load(f)
 f.close()
-
+#Functions 
 def reflector(c):
     return alphabet[len(alphabet)-alphabet.find(c)-1]
 
@@ -25,11 +26,11 @@ def enigma_one_char(c):
 def rotate_rotors():
     global r1, r2, r3
     r1 = r1[1:] + r1[0]
-    if state % 26 == 0:
+    if state % 58 == 0:
         r2 = r2[1:] + r2[0]
-    if state % (26*26) == 0:
+    if state % (58*58) == 0:
         r3 = r3[1:] + r3[0]
-
+#Main Function    
 if not len(sys.argv) == 2:
     print("Please enter your message.")
 
@@ -46,3 +47,5 @@ else:
         rotate_rotors()
 
     print(cipher)
+    print("Task Finished successfully")
+#Finish    
