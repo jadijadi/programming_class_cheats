@@ -1,13 +1,13 @@
 import pickle
 import sys
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz '
+#َadding capital word and other thing that make programm more user-friendly
+alphabet="abcdefghijklmnopqrstuvwxyz;: ''?!$%^&*+-/().ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 plugboard = {'a':'a','b':'b'}
 
 f = open('./todays_rotor_state.enigma', 'rb')
 r1, r2, r3 = pickle.load(f)
 f.close()
-
 
 def reflector(c):
     return alphabet[len(alphabet)-alphabet.find(c)-1]
@@ -20,7 +20,6 @@ def enigma_one_char(c):
     c3 = alphabet[r3.find(reflected)]
     c2 = alphabet[r2.find(c3)]
     c1 = alphabet[r1.find(c2)]
-
     return c1
 
 def rotate_rotors():
