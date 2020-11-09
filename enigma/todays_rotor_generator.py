@@ -2,8 +2,7 @@ import random
 import pickle
 
 #Adding (),:;'' to current program to make it more user-friendly,CAPITAL WORDS!!!!
-alphabet="abcdefghijklmnopqrstuvwxyz;: ''?!$%^&*+-/().ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
+alphabet="abcdefghijklmnopqrstuvwxyz;: ?!.ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def main():
   r1 = list(alphabet)
   random.shuffle(r1)
@@ -39,5 +38,6 @@ def main():
   f4 = open("r(All-keys).txt","w")
   f4.write(r4)
   f4.close()
-  print("Keys Succesfully Generated")
+  print("Keys Succesfully Generated.")
+  print("Task Finished Successfully!")
 if __name__=="__main__":main()
