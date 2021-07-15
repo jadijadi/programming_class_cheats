@@ -10,32 +10,32 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Bind the socket to the localhost:10001
 server_address = ('localhost', 10001)
 sock.bind(server_address)
-print 'starting up on %s port %s' % server_address
+print('starting up on %s port %s' % server_address)
 
 # Listen
 sock.listen(1)
 
 while True:
     # Wait for an incomming connection
-    print >>sys.stderr, 'waiting...'
+    print('waiting...', file=sys.stderr)
     connection, client_addr = sock.accept()
 
     try:
-        print 'A request came! IP is ', client_addr
+        print('A request came! IP is ', client_addr)
 
         # Read data
         while True:
             data = connection.recv(150) #or any other number
-            print 'request is:', data
+            print('request is:', data.decode('UTF-8'))
             if data:
                 try:
                     answer = str(eval(data))
                 except:
                     answer = 'error!'
-                connection.sendall(answer)
-                print 'Hooraay.... Answered this one.'
+                connection.sendall(answer.encode('UTF-8'))
+                print('Hooraay.... Answered this one.')
             else:
-                print 'No data recived from', client_addr
+                print('No data recived from', client_addr)
                 break
 
     finally:
