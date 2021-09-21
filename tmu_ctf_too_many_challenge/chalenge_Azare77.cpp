@@ -14,15 +14,19 @@ vector<int> numbers;
 
 
 //the weird thing about this loop is that it work way faster by array instead of map
-int func(long x) {
+int func(unsigned int x) {
     cout << "strat for "<<x<<endl; 
     int count=0;
+    int j;
+    int k;
+    int index=0;
      for (int i=0;i< size(numbers); i++){
-       int j = numbers[i];
-       int k = x - j;
-       if (k==j||j>k)
+       j = numbers[i];
+       k = x - j;
+       if (k==j||j>k||k<0)
           continue;
-        if(dict[k]!=0)
+          map<int,int>::iterator it = dict.find(k);
+        if(it != dict.end())
             count++;
      }
   return count;
@@ -30,13 +34,14 @@ int func(long x) {
 
 
 
-string get_flag(vector<long> res){
+string get_flag(vector<unsigned int> res){
   
   string flag="";
   int step=1;
-    for (int i=0;i< size(res); i++){
+    for(int i=0;i< size(res); i++){
         flag+=char(func(res[i]));
-        cout<<"step "<<step<<endl;
+        // cout<<"step "<<step<<endl;
+
         step++;
         }
     return flag;
@@ -44,7 +49,7 @@ string get_flag(vector<long> res){
 
 int main () {
   string line;
-  vector<long> res ={751741232, 519127658, 583555720, 3491231752, 3333111256, 481365731, 982100628, 1001121327, 3520999746,
+  vector<unsigned int> res ={751741232, 519127658, 583555720, 3491231752, 3333111256, 481365731, 982100628, 1001121327, 3520999746,
            915725624, 3218509573, 3621224627, 3270950626, 3321456817, 3091205444, 999888800, 475855017, 448213157,
            3222412857, 820711846, 3710211491, 3119823672, 3333211607, 812955676, 971211391, 3210953872, 289789909,
            781213400, 578265122, 910021887, 653886578, 3712776506, 229812345, 582319118, 1111276998, 1151016390,
@@ -63,7 +68,7 @@ int main () {
       getline (myfile,line);
       // cout << line<<endl; 
       numbers.push_back(stoi(line));
-      dict[stoi(line)]=stoi(line);
+      dict[stoi(line)]=1;
     }
     myfile.close();
   }
@@ -71,7 +76,6 @@ int main () {
     cout << "Unable to open file"; 
     return 0;
   }
-
   string flag=get_flag(res);
   cout << "The flag is" << flag <<endl;
   
