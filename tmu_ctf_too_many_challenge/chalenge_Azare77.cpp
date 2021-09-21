@@ -10,6 +10,7 @@ using namespace std;
 // I THINK THIS PROGRAM SHOULD WORK FASTER THAN THIS
 
 map<int,int> dict;
+map<int,int>::iterator it;
 // vector<int> numbers;
 
 
@@ -19,20 +20,17 @@ int func(unsigned int x) {
     int count=0;
     int j;
     int k;
-    int index=0;
      for (auto const& [key, val] : dict){
        j = key;
        k = x - j;
        if (k==j||j>k||k<0)
           continue;
-          map<int,int>::iterator it = dict.find(k);
+          it = dict.find(k);
         if(it != dict.end())
             count++;
      }
   return count;
 }
-
-
 
 string get_flag(vector<unsigned int> res){
   
@@ -59,9 +57,8 @@ int main () {
   ifstream myfile ("numbers.txt");
   if (myfile.is_open())
   {
-    while (! myfile.eof() )
+    while (getline (myfile,line))
     {
-      getline (myfile,line);
       dict[stoi(line)]=1;
     }
     myfile.close();
@@ -72,6 +69,5 @@ int main () {
   }
   string flag=get_flag(res);
   cout << "The flag is" << flag <<endl;
-  
   return 1;
 }
