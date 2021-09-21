@@ -2,26 +2,25 @@ numbers = []
 print ('starting')
 with open("numbers.txt") as f:
         content = f.readlines()
+hashed_numbers = dict()
 for n in content:
-    numbers.append(int(n.strip()))
+    numbers.append(int(n))
+    hashed_numbers[int(n)] = True
 print ('numbers are ready')
 
 def func(x):
+    global numbers
     print ('func started for %s' % x)
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    ans = set() 
-    step = 0
-    for i in numbers:
-        j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
-                continue
-            elif j > i:
-                ans.add((j,i))
-            else:
-                ans.add((i,j))
-    return len(ans) 
+    numbers = sorted(numbers)
+    res = 0
+    for number in numbers:
+        if number > x - number:
+            continue
+        if (x - number) in hashed_numbers:
+            res += 1
+    return res
 
 
 def get_flag(res):
