@@ -1,27 +1,29 @@
-numbers = []
-print ('starting')
-with open("numbers.txt") as f:
-        content = f.readlines()
-for n in content:
-    numbers.append(int(n.strip()))
-print ('numbers are ready')
+def intersection(lst1, lst2):
+    lst3 = [value for value in lst1 if value in lst2]
+    return lst3
 
 def func(x):
-    print ('func started for %s' % x)
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    ans = set() 
-    step = 0
-    for i in numbers:
-        j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
-                continue
-            elif j > i:
-                ans.add((j,i))
-            else:
-                ans.add((i,j))
-    return len(ans) 
+
+    numbers = open('numbers.txt', 'r').readlines()
+    numbers = set(numbers)
+    
+    results = []
+    for num in numbers:
+
+        num = int(num.rstrip("\n"))
+        if x < num:
+            continue
+
+        tmp = x - num
+        results.append(str(tmp)+"\n")
+
+    new_list = intersection(results, numbers)
+
+    print(f"{len(new_list)//2} : {chr(len(new_list)//2)}")
+
+    return(len(new_list)//2)
 
 
 def get_flag(res):
