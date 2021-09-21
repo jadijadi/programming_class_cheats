@@ -1,16 +1,16 @@
-numbers = []
+numbers = set()
 print ('starting')
 with open("numbers.txt") as f:
-        content = f.readlines()
+    content = f.readlines()
 for n in content:
-    numbers.append(int(n.strip()))
+    numbers.add(int(n.strip()))
 print ('numbers are ready')
 
 def func(x):
     print ('func started for %s' % x)
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    ans = set() 
+    ans = set()
     step = 0
     for i in numbers:
         j = x - i # we are looking for j where j+i == x
@@ -21,7 +21,7 @@ def func(x):
                 ans.add((j,i))
             else:
                 ans.add((i,j))
-    return len(ans) 
+    return len(ans)
 
 
 def get_flag(res):
