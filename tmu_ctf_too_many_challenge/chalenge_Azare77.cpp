@@ -11,10 +11,8 @@ using namespace std;
 
 map<int,int> dict;
 map<int,int>::iterator it;
-// vector<int> numbers;
 
 
-//the weird thing about this loop is that it work way faster by array instead of map
 int func(unsigned int x) {
     cout << "strat for "<<x<<endl; 
     int count=0;
