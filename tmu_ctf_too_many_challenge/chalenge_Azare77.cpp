@@ -10,7 +10,7 @@ using namespace std;
 // I THINK THIS PROGRAM SHOULD WORK FASTER THAN THIS
 
 map<int,int> dict;
-vector<int> numbers;
+// vector<int> numbers;
 
 
 //the weird thing about this loop is that it work way faster by array instead of map
@@ -20,8 +20,8 @@ int func(unsigned int x) {
     int j;
     int k;
     int index=0;
-     for (int i=0;i< size(numbers); i++){
-       j = numbers[i];
+     for (auto const& [key, val] : dict){
+       j = key;
        k = x - j;
        if (k==j||j>k||k<0)
           continue;
@@ -37,12 +37,8 @@ int func(unsigned int x) {
 string get_flag(vector<unsigned int> res){
   
   string flag="";
-  int step=1;
     for(int i=0;i< size(res); i++){
         flag+=char(func(res[i]));
-        // cout<<"step "<<step<<endl;
-
-        step++;
         }
     return flag;
   }
@@ -66,8 +62,6 @@ int main () {
     while (! myfile.eof() )
     {
       getline (myfile,line);
-      // cout << line<<endl; 
-      numbers.push_back(stoi(line));
       dict[stoi(line)]=1;
     }
     myfile.close();
