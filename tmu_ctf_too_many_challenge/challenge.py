@@ -1,10 +1,16 @@
 numbers = []
+dictionary ={}
+
 print ('starting')
 with open("numbers.txt") as f:
         content = f.readlines()
 for n in content:
-    numbers.append(int(n.strip()))
+  dictionary[int(n.strip())] = 0
+
+
 print ('numbers are ready')
+
+
 
 def func(x):
     print ('func started for %s' % x)
@@ -12,15 +18,17 @@ def func(x):
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
     ans = set() 
     step = 0
-    for i in numbers:
+    for i in dictionary:
         j = x - i # we are looking for j where j+i == x
-        if j in numbers:
+        if j in dictionary:
             if j == i:
                 continue
             elif j > i:
                 ans.add((j,i))
             else:
                 ans.add((i,j))
+                
+    print(len(ans) )
     return len(ans) 
 
 
@@ -30,8 +38,6 @@ def get_flag(res):
         flag.append(chr(func(res[i])))
     flag = ''.join(flag)
     return flag
-
-
 if __name__ == "__main__":
     res = [751741232, 519127658, 583555720, 3491231752, 3333111256, 481365731, 982100628, 1001121327, 3520999746,
            915725624, 3218509573, 3621224627, 3270950626, 3321456817, 3091205444, 999888800, 475855017, 448213157,
