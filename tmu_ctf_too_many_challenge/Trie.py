@@ -5,22 +5,22 @@ class TrieNode(object):
     def __init__(self, char: str):
         self.char = char
         self.children = []
-        self.word_finished = False
+        self.int_finished = False
         self.counter = 1
     
 
-def add(root, word: int):
+def add(root, int: int):
     """
-    Adding a word in the trie structure
+    Adding an int in the trie structure
     """
     node = root
-    for char in word:
+    for char in int:
         found_in_child = False
         # Search for the character in the children of the present `node`
         for child in node.children:
             if child.char == char:
                 # We found it, increase the counter by 1 to keep track that another
-                # word has it as well
+                # int has it as well
                 child.counter += 1
                 # And point the node to the child that contains this char
                 node = child
@@ -32,15 +32,15 @@ def add(root, word: int):
             node.children.append(new_node)
             # And then point node to the new child
             node = new_node
-    # Everything finished. Mark it as the end of a word.
-    node.word_finished = True
+    # Everything finished. Mark it as the end of a int.
+    node.int_finished = True
 
 
 def find_prefix(root, prefix: int) -> int:
     """
     Check and return 
-      1. If the prefix exsists in any of the words we added so far
-      2. If yes then how may words actually have the prefix
+      1. If the prefix exsists in any of the ints we added so far
+      2. If yes then how may ints actually have the prefix
     """
     node = root
     # If the root node has no children, then return False.
@@ -61,7 +61,7 @@ def find_prefix(root, prefix: int) -> int:
         if char_not_found:
             return 0
     # Well, we are here means we have found the prefix. Return true to indicate that
-    # And also the counter of the last node. This indicates how many words have this
+    # And also the counter of the last node. This indicates how many ints have this
     # prefix
     return prefix
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     root = TrieNode('*')
     numbers = []
     print ('starting')
-    with open("/home/mahdi/Desktop/Projects/programming_class_cheats/tmu_ctf_too_many_challenge/numbers.txt") as f:
+    with open("numbers.txt") as f:
         content = f.readlines()
     for n in content:
         numbers.append(int(n.strip()))
