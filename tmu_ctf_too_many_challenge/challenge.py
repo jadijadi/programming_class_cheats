@@ -17,7 +17,7 @@ def func(x):
             numbers[i] = True
             numbers[z] = True
             step += 1
-    return step
+    return int(step) / 2
 
 
 def get_flag(res):
