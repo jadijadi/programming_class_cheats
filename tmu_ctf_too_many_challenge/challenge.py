@@ -10,18 +10,14 @@ def func(x):
     print ('func started for %s' % x)
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    ans = set() 
     step = 0
     for i in numbers:
-        j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
-                continue
-            elif j > i:
-                ans.add((j,i))
-            else:
-                ans.add((i,j))
-    return len(ans) 
+        z = x - i
+        if(z != i and z in numbers):
+            numbers[i] = True
+            numbers[z] = True
+            step += 1
+    return step
 
 
 def get_flag(res):
