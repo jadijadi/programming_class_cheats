@@ -9,5 +9,7 @@ Cythonized version benchmark is  6seconds
 - `distutils.core.setup(
     ext_modules = Cython.Build.cythonize("challenge.pyx"))`
 - And then run This Command Below:
-- `python setup.py build_ext --inplace`
-- Now run python interpreter and Run `import challenge`
+- `python setup.py build_ext --inplace`<br>
+<br>**All files till here are included in my fork/cython folder
+- Now you just need to run python interpreter and Run `import challenge`
+
