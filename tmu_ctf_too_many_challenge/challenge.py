@@ -1,10 +1,13 @@
 import time
+
+from cv2 import sort
 numbers = set()
 print ('starting')
 with open("numbers.txt") as f:
     content = f.readlines()
 for n in content:
     numbers.add(int(n.strip()))
+
 print ('numbers are ready')
 
 def func(x):
@@ -13,19 +16,18 @@ def func(x):
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
     ans = set() 
     listofkeyvalues={}
+    j=0
     for i in numbers:
-        if x-i<0:
+        j=x-i
+        if j<0:
             continue
-        listofkeyvalues[i]=x-i
-        
-    for (i,j) in listofkeyvalues.items():
         if j in numbers:
-            if j > i:
+            if  j> i:
                 ans.add((j,i))
             else:
                 ans.add((i,j)) 
     return len(ans) 
-
+        
 
 def get_flag(res):
     flag = []
