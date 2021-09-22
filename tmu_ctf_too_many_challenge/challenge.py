@@ -1,33 +1,25 @@
+import pandas as pd
+res = None
 numbers = []
-print ('starting')
+print('starting')
 with open("numbers.txt") as f:
-        content = f.readlines()
+    content = f.readlines()
+
 for n in content:
     numbers.append(int(n.strip()))
-print ('numbers are ready')
-
-def func(x):
-    print ('func started for %s' % x)
-    # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
-    # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    ans = set() 
-    step = 0
-    for i in numbers:
-        j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
-                continue
-            elif j > i:
-                ans.add((j,i))
-            else:
-                ans.add((i,j))
-    return len(ans) 
+print('numbers are ready')
+df = pd.DataFrame(columns=['y'], data={'y': numbers})
 
 
 def get_flag(res):
     flag = []
-    for i in range(len(res)):
-        flag.append(chr(func(res[i])))
+    step = 1
+    for x in res:
+        # x = y + z than z = x - y and  
+        df['z'] = x - df['y']
+        flag.append(chr(df['z'].isin(numbers).value_counts()[True]//2))
+        print(f"{step}/{len(res)}: {''.join(flag)}")
+        step += 1
     flag = ''.join(flag)
     return flag
 
