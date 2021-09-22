@@ -1,6 +1,4 @@
 import time
-
-from cv2 import sort
 numbers = set()
 print ('starting')
 with open("numbers.txt") as f:
