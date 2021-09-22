@@ -69,7 +69,7 @@ if __name__ == "__main__":
     root = TrieNode('*')
     numbers = []
     print ('starting')
-    with open("numbers.txt") as f:
+    with open("/home/mahdi/Desktop/Projects/programming_class_cheats/tmu_ctf_too_many_challenge/numbers.txt") as f:
         content = f.readlines()
     for n in content:
         numbers.append(int(n.strip()))
@@ -85,13 +85,10 @@ def func(x):
     for i in numbers:
         j = x - i # we are looking for j where j+i == x
         a=find_prefix(root, j)
-        if a!=0:
-            if a == i:
-                continue
-            elif a > i:
-                ans.add((a,i))
-            else:
-                ans.add((i,a))
+        if a!=0 and a!=i and a > i:
+            ans.add((a,i))
+        if a!=0 and a!=i and a < i:
+            ans.add((i,a))
     return len(ans)
 
 
