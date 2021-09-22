@@ -15,7 +15,6 @@ def func(x):
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
     ans = set() 
-    listofkeyvalues={}
     j=0
     for i in numbers:
         j=x-i
