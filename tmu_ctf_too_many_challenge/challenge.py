@@ -1,9 +1,18 @@
-numbers = []
+numbers = dict()
+repeated_numbers = []
+
 print ('starting')
+
 with open("numbers.txt") as f:
         content = f.readlines()
+        
 for n in content:
-    numbers.append(int(n.strip()))
+    number = int(n.strip())
+    if str(number) in numbers:
+        repeated_numbers.append(number)
+    else:        
+        numbers[str(number)] = number
+
 print ('numbers are ready')
 
 def func(x):
@@ -13,14 +22,17 @@ def func(x):
     ans = set() 
     step = 0
     for i in numbers:
-        j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
+        j = x - int(i) # we are looking for j where j+i == x
+        if str(j) in numbers or j in repeated_numbers:
+            if j == int(i):
                 continue
-            elif j > i:
-                ans.add((j,i))
+            elif j > int(i):
+                ans.add((j,int(i)))
             else:
-                ans.add((i,j))
+                ans.add((int(i),j))
+
+        print(step)
+        step+=1
     return len(ans) 
 
 
