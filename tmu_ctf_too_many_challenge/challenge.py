@@ -16,14 +16,12 @@ def func(x):
             counter += 1
     return counter
 
-
 def get_flag(res):
     flag = []
     for i in range(len(res)):
         flag.append(chr(func(res[i])))
     flag = ''.join(flag)
     return flag
-
 
 if __name__ == "__main__":
     res = [751741232, 519127658, 583555720, 3491231752, 3333111256, 481365731, 982100628, 1001121327, 3520999746,
