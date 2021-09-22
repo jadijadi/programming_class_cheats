@@ -13,7 +13,7 @@ def func(x):
     step = 0
     for i in numbers:
         z = x - i
-        if(z != i and z in numbers):
+        if(z != i and z in numbers and (numbers[i] == False and numbers[z] == False)):
             numbers[i] = True
             numbers[z] = True
             step += 1
