@@ -1,27 +1,28 @@
-numbers = []
-print ('starting')
+ numbers = []
 with open("numbers.txt") as f:
-        content = f.readlines()
+    content = f.readlines()
 for n in content:
     numbers.append(int(n.strip()))
-print ('numbers are ready')
+
 
 def func(x):
-    print ('func started for %s' % x)
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    ans = set() 
-    step = 0
+    global numbers
+    numbers = list(set(numbers))
+    hashtable = {}
+    ans = []
     for i in numbers:
-        j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
-                continue
-            elif j > i:
-                ans.add((j,i))
-            else:
-                ans.add((i,j))
-    return len(ans) 
+        j = x - i  # we are looking for j where j+i == x
+        if j not in numbers:
+            hashtable[i] = j
+        else:
+            hashtable[i] = j
+            ans.append(i)
+            print(f"Pair with given sum {x}  is ({i}, {j})")
+    return ans
+
+
 
 
 def get_flag(res):
