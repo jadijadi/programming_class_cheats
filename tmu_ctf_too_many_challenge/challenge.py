@@ -1,9 +1,9 @@
-numbers = []
+numbers = set()
 print ('starting')
 with open("numbers.txt") as f:
         content = f.readlines()
 for n in content:
-    numbers.append(int(n.strip()))
+    numbers.add(int(n.strip()))
 print ('numbers are ready')
 
 def func(x):
