@@ -11,16 +11,14 @@ def func(x):
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
     ans = set() 
+    h_table = set()
     step = 0
     for i in numbers:
         j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
-                continue
-            elif j > i:
-                ans.add((j,i))
-            else:
-                ans.add((i,j))
+        if hash(j) in h_table:
+            ans.add((j,i))
+        h_table.add(hash(i))
+    
     return len(ans) 
 
 
