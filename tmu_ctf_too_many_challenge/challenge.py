@@ -11,10 +11,11 @@ def func(x):
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
     ans = set() 
-    step = 0
-    for i in numbers:
+    # step = 0
+    numbers_set = set(numbers)
+    for i in numbers_set:
         j = x - i # we are looking for j where j+i == x
-        if j in numbers:
+        if j in numbers_set:
             if j == i:
                 continue
             elif j > i:
