@@ -1,38 +1,44 @@
-numbers = []
-print ('starting')
-with open("numbers.txt") as f:
-        content = f.readlines()
-for n in content:
-    numbers.append(int(n.strip()))
-print ('numbers are ready')
+from multiprocessing import Process, Queue, Manager, Semaphore
+from time import sleep
 
-def func(x):
+
+
+def func(x, q, numberS, sema):
     print ('func started for %s' % x)
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
     ans = set() 
     step = 0
-    for i in numbers:
+    for i in numberS.keys():
         j = x - i # we are looking for j where j+i == x
-        if j in numbers:
+        if j in numberS.keys():
             if j == i:
                 continue
             elif j > i:
                 ans.add((j,i))
             else:
                 ans.add((i,j))
-    return len(ans) 
+    q.put(len(ans))
+    print ('func ended for %s' % x)
+    sema.release()
+    print ('func released for %s' % x)
 
 
 def get_flag(res):
-    flag = []
-    for i in range(len(res)):
-        flag.append(chr(func(res[i])))
-    flag = ''.join(flag)
-    return flag
+    pass
 
 
 if __name__ == "__main__":
+    numbers = []
+    print ('starting')
+    with open("numbers.txt") as f:
+            content = f.readlines()
+    for n in content:
+        numbers.append(int(n.strip()))
+    print ('numbers are ready')
+    nums = {k:k for k in numbers}
+    
+
     res = [751741232, 519127658, 583555720, 3491231752, 3333111256, 481365731, 982100628, 1001121327, 3520999746,
            915725624, 3218509573, 3621224627, 3270950626, 3321456817, 3091205444, 999888800, 475855017, 448213157,
            3222412857, 820711846, 3710211491, 3119823672, 3333211607, 812955676, 971211391, 3210953872, 289789909,
@@ -44,4 +50,23 @@ if __name__ == "__main__":
            344209171, 537454826, 691277475, 2634678623, 1112182335, 792111856, 762989676, 666210267, 871278369,
            581009345, 391231132, 921732469, 717217468, 3101412929, 3101217354, 831912337, 532666530, 701012510,
            601365919, 492699680, 2843119525]
-    print("The flag is", get_flag(res))
+    q = Queue()
+    flag = []
+    processes = []
+    concurrency = 8 # Use only 8 concurrent processes
+    sema = Semaphore(concurrency)
+    with Manager() as manager: # Share the numberS between all processes to avoid loading it in every process fork
+        numberS = manager.dict(nums)
+        for i in range(len(res)):
+            sema.acquire() #  Use only 8 concurrent processes
+            p=Process(target=func, args=(res[i],q, numberS, sema))
+            processes.append(p)
+            p.start()
+            #sleep(0.1)
+        
+        for p in processes:
+            flag.append(chr(q.get()))
+            p.join()
+        
+    flag = ''.join(flag)
+    print("The flag is", flag)
