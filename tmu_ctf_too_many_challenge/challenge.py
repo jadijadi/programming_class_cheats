@@ -1,27 +1,78 @@
-numbers = []
-print ('starting')
-with open("numbers.txt") as f:
+class TrieNode(object):
+    """
+    The idea is usign the Trie structure
+    """
+    def __init__(self, char: str):
+        self.char = char
+        self.children = []
+        self.int_finished = False
+        self.counter = 1
+    
+
+def add(root, int: int):
+    """
+    Adding an int in the Trie structure
+    """
+    node = root
+    for char in int:
+        found_in_child = False
+        for child in node.children:
+            if child.char == char:
+                child.counter += 1
+                node = child
+                found_in_child = True
+                break
+        if not found_in_child:
+            new_node = TrieNode(char)
+            node.children.append(new_node)
+            node = new_node
+    node.int_finished = True
+
+
+def find_prefix(root, prefix: int) -> int:
+    node = root
+    if not root.children:
+        return 0
+    for char in str(prefix):
+        char_not_found = True
+        for child in node.children:
+            if child.char == char:
+                char_not_found = False
+                node = child
+                break
+        if char_not_found:
+            return 0
+    return prefix
+
+if __name__ == "__main__":
+    root = TrieNode('*')
+    numbers = []
+    print ('starting')
+    with open("numbers.txt") as f:
         content = f.readlines()
-for n in content:
-    numbers.append(int(n.strip()))
-print ('numbers are ready')
+    for n in content:
+        numbers.append(int(n.strip()))
+        add(root,n.strip())
+    print ('numbers are ready')
+
 
 def func(x):
     print ('func started for %s' % x)
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    ans = set() 
-    step = 0
+    ans=set()
     for i in numbers:
         j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
+        a=find_prefix(root, j)
+        if a!=0:
+            if a == i:
                 continue
-            elif j > i:
-                ans.add((j,i))
+            elif a > i:
+                ans.add((a,i))
             else:
-                ans.add((i,j))
-    return len(ans) 
+                ans.add((i,a))
+    print(len(ans))
+    return len(ans)
 
 
 def get_flag(res):
@@ -45,3 +96,4 @@ if __name__ == "__main__":
            581009345, 391231132, 921732469, 717217468, 3101412929, 3101217354, 831912337, 532666530, 701012510,
            601365919, 492699680, 2843119525]
     print("The flag is", get_flag(res))
+
