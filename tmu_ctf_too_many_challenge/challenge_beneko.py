@@ -16,8 +16,8 @@ def func(x):
     for i in numbers.keys():
         if i < x:
             j = x - i
-            if numbers.get(j):
-                if i >= j:
+            if numbers.get(j) and i != j:
+                if i > j:
                     ans.add((i, j))
     return len(ans)
 
