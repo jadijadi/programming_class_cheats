@@ -1,34 +1,28 @@
-numbers = []
-print ('starting')
+numbers = set()
 with open("numbers.txt") as f:
-        content = f.readlines()
-for n in content:
-    numbers.append(int(n.strip()))
-print ('numbers are ready')
+    for line in f:
+        numbers.add(int(line.strip()))
+
 
 def func(x):
-    print ('func started for %s' % x)
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    ans = set() 
-    step = 0
-    for i in numbers:
-        j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
-                continue
-            elif j > i:
-                ans.add((j,i))
-            else:
-                ans.add((i,j))
-    return len(ans) 
+    res = set()
+    for y in numbers:
+        z = x - y
+        if z != y and z in numbers:
+            if y < z:
+                res.add((y, z))
+    return len(res)
 
 
 def get_flag(res):
     flag = []
     for i in range(len(res)):
+        print(f"Searching for flag index {i}")
         flag.append(chr(func(res[i])))
     flag = ''.join(flag)
+    print(f"Total number of chars are: {len(flag)}")
     return flag
 
 
