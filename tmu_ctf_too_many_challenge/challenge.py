@@ -14,9 +14,10 @@ df = pd.DataFrame(columns=['y'], data={'y': numbers})
 def get_flag(res):
     flag = []
     step = 1
-    for r in res:
-        df[r] = r-df['y']
-        flag.append(chr(df[r].isin(numbers).value_counts()[True]))
+    for x in res:
+        # x = y + z than z = x - y and  
+        df['z'] = x - df['y']
+        flag.append(chr(df['z'].isin(numbers).value_counts()[True]//2))
         print(f"{step}/{len(res)}: {''.join(flag)}")
         step += 1
     flag = ''.join(flag)
