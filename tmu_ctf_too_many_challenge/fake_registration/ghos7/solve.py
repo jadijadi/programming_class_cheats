@@ -1,6 +1,4 @@
 import requests
-import string
-import time
 
 url = 'http://130.185.123.246/register'
 
