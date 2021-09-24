@@ -1,32 +1,41 @@
+import time
 numbers = set()
+print ('starting')
 with open("numbers.txt") as f:
-    for line in f:
-        numbers.add(int(line.strip()))
+    content = f.readlines()
+for n in content:
+    numbers.add(int(n.strip()))
 
+print ('numbers are ready')
 
 def func(x):
+    print ('func started for %s' % x)
     # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
     # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    res = set()
-    for y in numbers:
-        z = x - y
-        if z != y and z in numbers:
-            if y < z:
-                res.add((y, z))
-    return len(res)
-
+    ans = set() 
+    j=0
+    for i in numbers:
+        j=x-i
+        if j<0:
+            continue
+        if j in numbers:
+            if  j> i:
+                ans.add((j,i))
+            else:
+                ans.add((i,j)) 
+    return len(ans) 
+        
 
 def get_flag(res):
     flag = []
     for i in range(len(res)):
-        print(f"Searching for flag index {i}")
         flag.append(chr(func(res[i])))
     flag = ''.join(flag)
-    print(f"Total number of chars are: {len(flag)}")
     return flag
 
 
 if __name__ == "__main__":
+    start = time.time()
     res = [751741232, 519127658, 583555720, 3491231752, 3333111256, 481365731, 982100628, 1001121327, 3520999746,
            915725624, 3218509573, 3621224627, 3270950626, 3321456817, 3091205444, 999888800, 475855017, 448213157,
            3222412857, 820711846, 3710211491, 3119823672, 3333211607, 812955676, 971211391, 3210953872, 289789909,
@@ -39,3 +48,5 @@ if __name__ == "__main__":
            581009345, 391231132, 921732469, 717217468, 3101412929, 3101217354, 831912337, 532666530, 701012510,
            601365919, 492699680, 2843119525]
     print("The flag is", get_flag(res))
+    end = time.time()
+    print(f'Captured The Flag in {end-start} seconds')
