@@ -25,7 +25,7 @@ void evolution(void *u, int w, int h)
 			int lives = 0;
 			for (int xd = x - 1; xd <= x + 1; xd++)
 				for (int yd = y - 1; yd <= y + 1; yd++)
-					if (world[(yd + h) % h][(xd + w) % w])
+					if (world[yd % h][xd % w])
 						lives++;
 			if (world[y][x]) lives--;
 			
