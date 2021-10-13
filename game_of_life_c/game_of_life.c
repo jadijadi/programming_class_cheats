@@ -41,6 +41,7 @@ int main()
 	int w = 30;
 	int h = 30;
 	char world[h][w];
+	srand(time(0));
 	for (int x = 0; x < w; x++)
 		for (int y = 0; y <h; y++)
 			world[y][x] = rand() < RAND_MAX / 10 ? 1 : 0;
