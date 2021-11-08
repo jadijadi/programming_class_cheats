@@ -1,28 +1,35 @@
-numbers = set()
-with open("numbers.txt") as f:
-    for line in f:
-        numbers.add(int(line.strip()))
+import time
 
+print('starting')
+with open("numbers.txt") as file:
+    numbers = {v: k for k, v in enumerate([int(line.strip()) for line in file])}
+print('numbers are ready')
 
 def func(x):
-    # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
-    # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    res = set()
-    for y in numbers:
-        z = x - y
-        if z != y and z in numbers:
-            if y < z:
-                res.add((y, z))
-    return len(res)
+
+    print('func started for %s' % x)
+    """
+        Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
+        Note that two pairs (y, z) and (z, y) are considered the same and are counted only once 
+    """
+    ans = set()
+    for i in numbers.keys():
+        if i < x:
+            j = x - i
+            if numbers.get(j) and i != j:
+                if i > j:
+                    ans.add((i, j))
+    return len(ans)
 
 
 def get_flag(res):
+    start = time.time()
     flag = []
     for i in range(len(res)):
-        print(f"Searching for flag index {i}")
         flag.append(chr(func(res[i])))
     flag = ''.join(flag)
-    print(f"Total number of chars are: {len(flag)}")
+    end = time.time()
+    print(end-start)
     return flag
 
 
