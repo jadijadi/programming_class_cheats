@@ -33,9 +33,9 @@ def find_free():
     for i in range(9):
         for j in range(9):
             if (puzzle[i][j] == 0):
-                l = [i, j]
+                blank_square = [i, j]
                 guess[i][j] = 1
-                return l
+                return blank_square
     return False
 
 
@@ -53,11 +53,11 @@ def is_valid(n, x, y):
 
 
 def solve():
-    l = find_free()
-    if (l == False):
+    blank_square = find_free()
+    if (blank_square is False):
         return True
-    x = l[0]
-    y = l[1]
+    x = blank_square[0]
+    y = blank_square[1]
     for i in range(1, 10):
         if (is_valid(i, x, y)):
             puzzle[x][y] = i
