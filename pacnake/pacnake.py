@@ -14,6 +14,7 @@ enemy_count = 3
 
 stdscr = curses.initscr()
 curses.noecho()
+curses.curs_set(0);
 curses.cbreak()
 stdscr.keypad(True)
 stdscr.nodelay(True)
@@ -173,5 +174,6 @@ time.sleep(1)
 stdscr.clear()
 stdscr.refresh()
 curses.nocbreak()
+curses.curs_set(1);
 stdscr.keypad(False)
 curses.echo()
