@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import curses
 import random
 import time
@@ -12,6 +14,7 @@ enemy_count = 3
 
 stdscr = curses.initscr()
 curses.noecho()
+curses.curs_set(0);
 curses.cbreak()
 stdscr.keypad(True)
 stdscr.nodelay(True)
@@ -143,33 +146,38 @@ def check_food_status():
             food[i] = (l, c, a)
 
 
-init()
+try:
+    init()
 
-playing = True
-while playing:
-    # read the keyboard
-    try:
-        c = stdscr.getkey()
-    except:
-        c = ''
+    playing = True
+    while playing:
+        # read the keyboard
+        try:
+            c = stdscr.getkey()
+        except:
+            c = ''
 
-    if c in 'asdw':
-        move(c)
-    elif c == 'q':
-        playing = False  # Exit the while loop
+        if c in 'asdw':
+            move(c)
+        elif c == 'q':
+            playing = False  # Exit the while loop
 
-    check_enemy()
-    check_food_status()
+        check_enemy()
+        check_food_status()
 
-    time.sleep(0.03)
+        time.sleep(0.03)
 
-    draw()
+        draw()
 
-stdscr.addstr(maxl//2, maxc//2, "Thanks for playing")
-stdscr.refresh()
-time.sleep(1)
-stdscr.clear()
-stdscr.refresh()
-curses.nocbreak()
-stdscr.keypad(False)
-curses.echo()
+    stdscr.addstr(maxl//2, maxc//2, "Thanks for playing")
+    stdscr.refresh()
+    time.sleep(1)
+except:
+        pass
+finally:
+    stdscr.clear()
+    curses.nocbreak()
+    curses.curs_set(1);
+    stdscr.keypad(False)
+    curses.echo()
+    curses.endwin();
